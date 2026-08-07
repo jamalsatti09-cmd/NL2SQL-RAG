@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Show the names of all students.",
+    "gold_sql": "SELECT name FROM students;"
+  },
+  {
+    "question": "What is the GPA of M. Jamal?",
+    "gold_sql": "SELECT gpa FROM students WHERE name = 'M. Jamal';"
+  },
+  {
+    "question": "List course names and credits offered by the FCAI department.",
+    "gold_sql": "SELECT course_name, credits FROM courses WHERE department = 'FCAI';"
+  },
+  {
+    "question": "Find the name and department of all professors.",
+    "gold_sql": "SELECT name, department FROM professors;"
+  },
+  {
+    "question": "Show the name of each student along with their major name.",
+    "gold_sql": "SELECT students.name, majors.major_name FROM students JOIN majors ON students.major_id = majors.major_id;"
+  },
+  {
+    "question": "Which courses are taught by Sir Obaidullah?",
+    "gold_sql": "SELECT courses.course_name FROM courses JOIN teaches ON courses.course_id = teaches.course_id JOIN professors ON teaches.professor_id = professors.professor_id WHERE professors.name = 'Sir Obaidullah';"
+  },
+  {
+    "question": "Count the total number of students enrolled in each major.",
+    "gold_sql": "SELECT majors.major_name, COUNT(students.student_id) AS total_students FROM majors LEFT JOIN students ON majors.major_id = students.major_id GROUP BY majors.major_name;"
+  },
+  {
+    "question": "Show the names of students who have a GPA greater than 3.5.",
+    "gold_sql": "SELECT name FROM students WHERE gpa > 3.5;"
+  },
+  {
+    "question": "Find the student names who enrolled in 'Advanced Database Management Systems' during 'Fall 2025'.",
+    "gold_sql": "SELECT students.name FROM students JOIN enrollments ON students.student_id = enrollments.student_id JOIN courses ON enrollments.course_id = courses.course_id WHERE courses.course_name = 'Advanced Database Management Systems' AND enrollments.semester = 'Fall 2025';"
+  },
+  {
+    "question": "Find the names of students who failed at least one course (grade is 'F').",
+    "gold_sql": "SELECT DISTINCT students.name FROM students JOIN enrollments ON students.student_id = enrollments.student_id WHERE enrollments.grade = 'F';"
+  }
+]
